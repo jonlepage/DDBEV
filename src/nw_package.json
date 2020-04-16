@@ -1,0 +1,41 @@
+{
+	"main": "index.html",
+	"name": "helloworld",
+	"description": "NW.js and react from sratch",
+	"version": "0.1.0",
+	"chromium-args": "--enable-spell-checking --remote-debugging-port=9222",
+	"window": {
+		"frame": false,
+		"toolbar": false,
+		"min_width": 220,
+		"min_height": 65
+	},
+	"build": {
+		"output": "../prod/",
+		"appId": "io.github.evshiron.nwjs-builder-phoenix.project",
+		"nwVersion": "0.14.7",
+		"packed": true,
+		"targets": ["zip", "nsis7z"],
+		"strippedProperties": ["build"],
+		"outputPattern": "${NAME} ${VERSION} ${PLATFORM} ${ARCH}",
+		"win": {
+			"productName": "Project",
+			"companyName": "nwjs-builder-phoenix",
+			"copyright": "copyright",
+			"icon": "./res/icon/win.ico"
+		},
+		"mac": {
+			"displayName": "Project",
+			"copyright": "copyright",
+			"icon": "./assets/pd.icns",
+			"plistStrings": {
+				"CFBundleIdentifier": "io.github.evshiron.nwjs-builder-phoenix.project.modified",
+				"CFBundleDocumentTypes": []
+			}
+		},
+		"nsis": {
+			"installDirectory": "$PROGRAMFILES\\${_COMPANYNAME}\\${_APPNAME}",
+			"diffUpdaters": true
+		}
+	}
+}

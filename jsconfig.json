@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"jsx": "react",
+		"target": "es6",
+		"module": "es6",
+		"checkJs": true,
+		"lib": ["esnext", "dom"],
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true
+		// "baseUrl": "./src" permet de redefenir la base url de intelisence et autre plugin
+	},
+	"exclude": ["node_modules", "dist"]
+}
