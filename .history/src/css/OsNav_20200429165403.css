@@ -1,0 +1,8 @@
+.OsNav {
+	-webkit-user-select: none;
+	-webkit-app-region: drag;
+}
+
+.OsMenue {
+	-webkit-app-region: no-drag;
+}

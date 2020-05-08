@@ -1,0 +1,29 @@
+#_aaa {
+	background-attachment: fixed;
+}
+#_bbb {
+	background-attachment: fixed;
+}
+._AAA {
+	background-attachment: fixed;
+}
+._BBB {
+	background-attachment: fixed;
+}
+
+._AAA._BBB {
+	background-attachment: fixed;
+}
+
+.undefinedclass._BBB {
+}
+img._BBB {
+}
+.ant-dropdown-trigger._BBB {
+}
+.ant-dropdown-trigger._BBB:hover {
+}
+
+.OsMenue {
+	-webkit-app-region: no-drag;
+}

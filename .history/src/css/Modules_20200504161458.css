@@ -1,0 +1,14 @@
+/* Les style globale pour les modules draggable */
+
+.ModuleDragger {
+	display: block;
+	background: #ffffff03;
+	padding: 10px;
+	margin: 5px;
+	border-radius: 2px;
+	border-style: dashed;
+	border-color: white;
+	border-width: 1px;
+	min-width: 100%;
+	box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, 0.18);
+}

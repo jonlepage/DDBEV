@@ -1,0 +1,32 @@
+.ModaleTools {
+	display: flex;
+	background: #00000014;
+	align-items: center;
+	white-space: nowrap;
+	border-radius: 6px;
+	border-bottom: 1px solid #ffffff14;
+	border-top: 2px solid #ffffff14;
+	z-index: 1;
+	position: relative;
+	top: 5px;
+	padding: 0px 2px;
+	right: 5px;
+	float: right;
+	position: relative;
+}
+
+.ModaleTools span.anticon {
+	margin: 1px;
+	padding: 2px;
+	border-width: 2px;
+	border-style: ridge;
+	border-color: #ffffff0a;
+	transition: color 600ms;
+}
+.ModaleTools span.anticon:hover {
+	background: #464646;
+	border-radius: 4px;
+	color: #b3aa3e;
+	cursor: pointer;
+	border-color: #856041;
+}

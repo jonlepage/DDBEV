@@ -1,0 +1,8 @@
+.ant-tree.TreeDataBase {
+	background: #343434;
+	color: #c5c5c5;
+}
+.TreeDataBase span.ant-tree-node-content-wrapper {
+	background: aqua;
+	width: -webkit-fill-available;
+}

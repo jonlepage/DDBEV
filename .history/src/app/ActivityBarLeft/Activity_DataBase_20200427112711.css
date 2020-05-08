@@ -1,0 +1,23 @@
+.ant-tree.TreeDataBase {
+	background: #343434;
+	color: #c5c5c5;
+}
+.TreeDataBase .ant-tree-treenode {
+	width: -webkit-fill-available;
+}
+
+.TreeDataBase span.ant-tree-node-content-wrapper {
+	background: #343434;
+	width: -webkit-fill-available;
+	display: flex;
+	white-space: nowrap;
+}
+
+.ant-tree .ant-tree-node-content-wrapper:hover {
+	background-color: #ffffff0d;
+}
+
+.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
+	background-color: #80462b;
+	color: white;
+}

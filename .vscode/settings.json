@@ -10,5 +10,7 @@
 	},
 	"emmet.showSuggestionsAsSnippets": false,
 	"editor.snippetSuggestions": "bottom",
-	"glean.experiments": ["hooksForFunctionalComponents"]
+	"glean.experiments": ["hooksForFunctionalComponents"],
+	"html-css-class-completion.includeGlobPattern": "**/*.{css,html,jsx,js}",
+	"explorer.sortOrder": "mixed"
 }

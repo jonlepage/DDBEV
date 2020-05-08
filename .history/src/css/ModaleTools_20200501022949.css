@@ -1,0 +1,38 @@
+.ModaleTools {
+	display: flex;
+	background: #00000014;
+	align-items: center;
+	padding: 1px;
+	border-radius: 6px;
+	border-bottom: 1px solid #ffffff14;
+	border-top: 2px solid #ffffff14;
+}
+#_aaa {
+	-webkit-app-region: no-drag;
+}
+#_bbb {
+	-webkit-app-region: no-drag;
+}
+._AAA {
+	-webkit-app-region: no-drag;
+}
+._BBB {
+	-webkit-app-region: no-drag;
+}
+
+._AAA._BBB {
+	-webkit-app-region: no-drag;
+}
+
+.undefinedclass._BBB {
+	-webkit-app-region: no-drag;
+}
+img._BBB {
+	-webkit-app-region: no-drag;
+}
+.ant-dropdown-trigger._BBB {
+	-webkit-app-region: no-drag;
+}
+.ant-dropdown-trigger._BBB:hover {
+	-webkit-app-region: no-drag;
+}

@@ -10,10 +10,6 @@
 			"request": "launch",
 			"name": "Launch NWjs",
 			"runtimeExecutable": "${workspaceRoot}\\node_modules\\nw\\nwjs\\nw.exe",
-			"runtimeArgs": [
-				"--disable-raf-throttling",
-				"--remote-debugging-port=9222"
-			],
 			"webRoot": "${workspaceRoot}/dist",
 			"port": 9222,
 			"reloadAfterAttached": true,

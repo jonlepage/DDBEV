@@ -1,0 +1,48 @@
+.ContentRoot {
+	width: 0px;
+	height: 0px;
+	min-width: 100%;
+	min-height: 100%;
+	border-style: solid;
+	border-color: #83c551;
+	padding: 10px;
+	background-size: 64px 64px;
+	background-image: linear-gradient(to right, #09ff0008 1px, #75e02500 2px),
+		linear-gradient(to bottom, #56ff0005 1px, transparent 2px);
+}
+.ContentPage {
+	width: 0px;
+	height: 0px;
+	min-width: 1000px;
+	min-height: 1000px;
+	border-color: #2601ec;
+	padding: 10px;
+	background-color: #6a31a91a;
+	background-size: 64px 64px;
+	background-image: linear-gradient(to right, #782cbd 1px, #75e02500 2px),
+		linear-gradient(to bottom, #782cbd 1px, transparent 2px);
+}
+.ContentPage {
+	width: 0px;
+	height: 0px;
+	min-width: 1000px;
+	min-height: 1000px;
+	border-color: #2601ec;
+	padding: 10px;
+	background-color: #6a31a91a;
+	background-size: 64px 64px;
+	background-image: linear-gradient(to right, #782cbd 1px, #75e02500 2px),
+		linear-gradient(to bottom, #782cbd 1px, transparent 2px);
+}
+.react-transform-component {
+	width: 0px !important;
+	height: 0px !important;
+	min-width: 100%;
+	min-height: 100%;
+}
+.ContentTool {
+	background: #222222;
+	width: 0px;
+	height: 35px;
+	min-width: 100%;
+}

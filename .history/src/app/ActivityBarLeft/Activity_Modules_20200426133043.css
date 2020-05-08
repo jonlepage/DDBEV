@@ -1,0 +1,56 @@
+.Activity_Modules {
+	width: fit-content;
+	background: #262626;
+	margin: auto;
+	display: block;
+	padding: 6px;
+}
+
+.ModuleInput {
+	background: #343434;
+	padding: 4px 6px;
+	border-style: groove;
+	border-radius: 4px;
+	border-color: #272727;
+}
+.ModuleInput:hover {
+	border-color: #4a4a4a;
+	background: #323232;
+}
+
+.TopModuleHeader {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-grow: 1;
+	justify-content: end;
+}
+.TopModuleR_tool {
+	display: flex;
+	background: #00000014;
+	align-items: center;
+	padding: 1px;
+	border-radius: 6px;
+	border-bottom: 1px solid #ffffff14;
+	border-top: 2px solid #ffffff14;
+}
+
+.TopModuleL_name {
+	flex: auto;
+	place-self: center;
+	margin-right: 4px;
+}
+
+.TopModuleR_tool > span {
+	padding: 2px;
+	border-color: #85604100;
+	border-width: 2px;
+	border-style: ridge;
+	transition: color 600ms;
+}
+.TopModuleR_tool > span:hover {
+	background: #464646;
+	border-radius: 4px;
+	color: #b3aa3e;
+	cursor: pointer;
+	border-color: #856041;
+}

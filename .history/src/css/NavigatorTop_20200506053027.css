@@ -1,0 +1,22 @@
+.NavigatorTop {
+}
+.NavigatorTop_Group {
+	padding: 0px 4px;
+}
+.NavigatorTop_Page {
+	background: #212121;
+	margin: 0px;
+	transition: color 0.21s, background 0.1s, border-color 0.1s, box-shadow 0.1s;
+}
+.NavigatorTop_Page.ant-radio-button-wrapper.ant-radio-button-wrapper-checked {
+	color: #ff7d3a;
+}
+.NavigatorTop_Page:hover {
+	color: #fff;
+	background: #ffffff33;
+	border-color: rgba(33, 33, 33, 0.70431373);
+}
+.NavigatorTop_Page.ant-radio-button-wrapper-checked:hover {
+	background: #ffffff00 !important;
+	color: #ff8b51;
+}

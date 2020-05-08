@@ -1,0 +1,15 @@
+@import '~antd/dist/antd.dark.less'; // Introduce the official dark less style entry file
+@import '~antd/dist/antd.compact.less'; // Introduce the official compact less style entry file
+@import './src/css/style.less'; // Introduce the official compact less style entry file
+// For common/openAnimation
+.ant-motion-collapse-legacy {
+	overflow: hidden;
+	&-active {
+		transition: height 10s @ease-in-out, opacity 10s @ease-in-out !important;
+	}
+}
+
+.ant-motion-collapse {
+	overflow: hidden;
+	transition: height 10s @ease-in-out, opacity 10s @ease-in-out !important;
+}

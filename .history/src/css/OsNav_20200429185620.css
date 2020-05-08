@@ -1,0 +1,25 @@
+.OsNav {
+	-webkit-user-select: none;
+	-webkit-app-region: drag;
+}
+
+.OsMenue {
+	-webkit-app-region: no-drag;
+}
+img.OsMenue {
+	margin-right: 12px;
+	background: white;
+	border-radius: 2px;
+	padding: 2px;
+	height: 20px;
+}
+
+.ant-dropdown-trigger.OsMenue {
+	background: #00000021;
+	padding: 2px 10px;
+	margin: 0px 1px;
+	transition: background 150ms;
+}
+.ant-dropdown-trigger.OsMenue:hover {
+	background: #ffffff14;
+}
