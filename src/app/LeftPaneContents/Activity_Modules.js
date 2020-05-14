@@ -1,87 +1,44 @@
-import React, { useState } from 'react';
-import { Box, Tooltip } from '@material-ui/core';
+import React from 'react';
 import { view, store } from '@risingstack/react-easy-state';
-import {
-	Input,
-	Card,
-	InputNumber,
-	Space,
-	Checkbox,
-	Radio,
-	Switch,
-	Slider,
-	Select,
-	Avatar,
-} from 'antd';
-import { EditFilled, UserOutlined } from '@ant-design/icons';
+import { Space, Collapse } from 'antd';
 import { Typography } from 'antd';
-import Inputs_string from './Activity_Modules/Inputs_string';
-const { Text } = Typography;
-const { Option } = Select;
-const { TextArea } = Input;
-//TODO: MODEL BUILDER
+import { Store_Module_inputString } from './Activity_Modules/Inputs_string';
+import { Store_Inputs_tag } from './Activity_Modules/Inputs_tag';
+import { Checkbox } from 'antd';
+import { Store_Module_layout } from './Activity_Modules/Module_layout';
 
-export const Store_Module_inputString = store({
-	/** utiliser pour la creaction de nouveau data */
-	DEFAULT: {
-		id: 'DEFAULT_STR0g5g',
-		settingId: {
-			displayTool: {
-				flexDirection: {
-					css: 'flexDirection',
-					LIST: ['column', 'column-reverse', 'row', 'row-reverse'],
-					title: 'Tool Directions',
-					value: 'row-reverse',
-				},
-				alignItems: {
-					css: 'alignItems',
-					LIST: ['center', 'flex-end', 'flex-start'],
-					title: 'Tool align',
-					value: 'flex-start',
-				},
-			},
-		},
-		/** returnera un setting par id TODO: STORE */
-		getSetting() {
-			return this.settingId; //Sore_setting.getById(this.settingId)
-		},
-	},
-	title: 'Input String',
-	/** tous les layout creer */
-	data: {},
-	/** creer le module, et lui passe le dataId
-	 * Si null ou undefined va utiliser default
-	 */
-	createView(dataId) {
-		return <Inputs_string dataId={dataId} />;
-	},
-	getById(id) {
-		if (id) {
-			// return this.data[id];
-		}
-		return this.DEFAULT;
-	},
-	/** create un new data */
-	create() {
-		return {};
-	},
-});
-/** Store Componment */
+const CheckboxGroup = Checkbox.Group;
+
+const { Text } = Typography;
+const { Panel } = Collapse;
+//TODO: RENDU ICI, SASURER QUE LES SETTING SON INTUITIF ET FONCTIONELLE
+/** Store Input? */
 export const Store_Modules = store({
-	/** drag drop id en cour */
-	dropId: null,
-	data: [Store_Module_inputString],
+	TYPE: {
+		string: Store_Module_inputString,
+		tag: Store_Inputs_tag,
+		layout: Store_Module_layout,
+	},
+	/** Static, dropData lorsque dnd */
+	DROPDATA: { i: 'dropTest', h: 1, w: 1, type: 'tag' },
+	/** data du dnd en cours */
+	dropData: null,
 	/** quand on drag un module */
-	onDragStart(data) {
-		this.dropId = data;
+	onDragStart(type) {
+		this.dropData = { ...this.DROPDATA, type };
 	},
-	onDragEnd(i) {
-		this.dropId = null;
+	onDragEnd() {
+		this.dropData = null;
 	},
-	/** creer un data en clonant un module  */
-	dropCreate() {
-		const mod = this.data[0];
-		mod;
+
+	/** return input view selon type, passe par le store respectif du input pour creer un view */
+	/**@param {'string'} type */
+	getInputView(type, id) {
+		const store = this.TYPE[type]; // store du input
+		if (!store) {
+			return <>Fatal error , type not existe</>;
+		}
+		return store.getView(id);
 	},
 });
 /** list des elements modules implementable */
@@ -91,26 +48,34 @@ const Activity_Modules = () => {
 		// Store_DataBaseStorage.setDropper(data);
 		//e.dataTransfer.setData('text', JSON.stringify(data));
 	};
-
 	return (
 		<div className={'Activity_Modules'}>
-			<Space direction='vertical'>
-				{Store_Modules.data.map((data, i) => {
-					return (
-						<div
-							key={i}
-							className='ModuleDragger'
-							draggable={true}
-							onDragStart={(e) => Store_Modules.onDragStart(data)}
-							onDragEnd={(e) => Store_Modules.onDragEnd()}
-						>
-							<div className={'ModuleTitle'}>
-								<Text type='secondary'>#string</Text>
+			<CheckboxGroup options={['decorative', 'strings', 'numbers']} />
+			<Collapse defaultActiveKey={['SingleModules']}>
+				<Panel header='Single Modules' key='SingleModules'>
+					{Object.keys(Store_Modules.TYPE).map((type, i) => {
+						// pour chaque data, affiche modules
+						return (
+							<div
+								key={i}
+								className='ModuleDragger'
+								draggable={true}
+								onDragStart={(e) => Store_Modules.onDragStart(type)}
+								onDragEnd={(e) => Store_Modules.onDragEnd()}
+							>
+								<div className={'ModuleTitle'}>
+									<Text type='secondary'>#{type}</Text>
+								</div>
+								{Store_Modules.getInputView(type)}
 							</div>
-							{data.createView('')}
-						</div>
-					);
-				})}
+						);
+					})}
+				</Panel>
+				<Panel header='Group Modules' key='GroupModules'>
+					{/* <Setting_base /> */}
+				</Panel>
+			</Collapse>
+			<Space direction='vertical'>
 				{/* <div
 					id={'Inputs_string'}
 					draggable={true}

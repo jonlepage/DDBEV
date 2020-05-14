@@ -4,6 +4,7 @@ import { Collapse, Select } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import Setting_base from './SettingBarRight/Setting_base';
 import Setting_Layout from './SettingBarRight/Setting_Layout';
+import { Store_PageOnglets } from './NavigatorTop';
 
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -38,6 +39,7 @@ class SettingBarRight extends React.Component {
 
 	render() {
 		const { expandIconPosition } = this.state;
+		const { id } = Store_PageOnglets.getCurrentSelected(); // on extract le id (root) de la page afficher
 		return (
 			<div
 				style={{
@@ -53,16 +55,17 @@ class SettingBarRight extends React.Component {
 					onChange={callback}
 					expandIconPosition={expandIconPosition}
 				>
-					<Panel header='RootSettings' key='0' extra={genExtra()}>
-						<Setting_Layout />
+					<Panel header='Page Settings' key='0' extra={genExtra()}>
+						{/* <Setting_Layout /> */}
+						Global page Setting ? *onglet icon, *preset *min zoom *max zoom *min
+						height *... other shit
 					</Panel>
-					<Panel header='Base' key='1' extra={genExtra()}>
-						{/* <Setting_base /> */}
-					</Panel>
-					<Panel header='Connections' key='2' extra={genExtra()}>
-						<div>{text}</div>
-					</Panel>
-					<Panel header='Styles' key='3' extra={genExtra()}>
+					{id && (
+						<Panel header='Layout Settings' key='1' extra={genExtra()}>
+							<Setting_Layout id={id} />
+						</Panel>
+					)}
+					<Panel header='Selected Settings' key='2' extra={genExtra()}>
 						<div>{text}</div>
 					</Panel>
 				</Collapse>

@@ -37,5 +37,10 @@ export const Store_LeftPan = store({
 			id: 'ScrachComponments',
 			title: 'Scrach and Componments',
 		},
+		{
+			src: '../res/img/nav/settings.png',
+			id: 'Settings',
+			title: 'Settings elements',
+		},
 	],
 });

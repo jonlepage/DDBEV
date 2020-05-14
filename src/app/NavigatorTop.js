@@ -3,42 +3,54 @@ import { Box } from '@material-ui/core';
 import { view, store } from '@risingstack/react-easy-state';
 import { Radio, Button } from 'antd';
 import { Store_Modales } from './Modales';
+import { PlusSquareFilled } from '@ant-design/icons';
+import { Store_layouts } from './ContentPage/PageType_Layout/Layouts';
 
 /** Store Componment */
 export const Store_PageOnglets = store({
 	MODELE: {
-		id: 'filename',
-		ext: '.class',
-		contentId: '',
+		/** id name de la page */
+		id: '',
+		/** extention assosier [.class,.sheet,.validator] */
+		ext: '',
+		/** index dans la nav */
 		index: -1,
 		pageType: '',
+		/** si la page est visible ou fermer */
+		visible: true,
 	},
 	_currentSelect: 0,
 	data: [],
-	/** TODO: pour progresser dans LayoutBox, besoin d'une page modal,
-	 * Creer un dataPage
-	 * Ensuite creer un PageOnglets qui ref le dataPage
-	 * on pourra donc fermer l'onglet si besoin ou ouvrir un nouvelle onglet avec fromDataId
-	 */
-
+	/** Creer une nouvelle page */
 	create(id = 'created_unknow', pageType = 'Layout') {
 		const index = this.data.length;
 		const newData = { ...this.MODELE, index, id, pageType };
 		this.data.push(newData);
 		this._currentSelect = index;
+		// create page content ? la ces layouts, voir pour les autre
+		Store_layouts.create(id);
 	},
 	getCurrentSelected() {
 		return this.data[this._currentSelect] || {};
 	},
 });
 
+/** Affiche les bouton de creation, et tous les page Ouvert */
 const NavigatorTop = () => {
 	const { data, _currentSelect } = Store_PageOnglets;
-
 	return (
 		<div className='NavigatorTop'>
 			<Button type='primary' onClick={() => Store_Modales.setVisibility(true)}>
-				Create new Class
+				<PlusSquareFilled />
+				Class
+			</Button>
+			<Button type='primary' onClick={() => null}>
+				<PlusSquareFilled />
+				Sheet
+			</Button>
+			<Button type='primary' onClick={() => null}>
+				<PlusSquareFilled />
+				Validator
 			</Button>
 			<Radio.Group
 				className={'NavigatorTop_Group'}

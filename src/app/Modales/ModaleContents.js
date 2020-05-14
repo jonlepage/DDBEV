@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Box } from '@material-ui/core';
-import { view, store } from '@risingstack/react-easy-state';
+import { view } from '@risingstack/react-easy-state';
 import { Switch, InputNumber, Input, Form, Radio, Select } from 'antd';
 import { TagFilled } from '@ant-design/icons';
 

@@ -6,7 +6,6 @@ import {
 	Store_DataBaseStorage,
 	Store_layoutSettings,
 } from '../stores/Store_DataPage';
-import LayoutBox from './ContentPage/PageType_Layout/LayoutBox';
 import { Store_Tool_Zoom } from '../stores/Store_ToolsEditor';
 import { Store_Modules } from './LeftPaneContents/Activity_Modules';
 import { Store_PageOnglets } from './NavigatorTop';
@@ -72,7 +71,7 @@ const ContentPage = () => {
 	const _zoomValue = Store_Tool_Zoom.data.value;
 	const { width, cols } = Store_layoutSettings.getById(); //todo: hum voir comment repropager
 
-	const isDragDrop = Store_Modules.dropId;
+	const isDragDrop = Store_Modules.dropData;
 	const { index, pageType } = Store_PageOnglets.getCurrentSelected(); // si une page est selectionner: diffuser la page
 	return (
 		<div className='ContentRoot'>

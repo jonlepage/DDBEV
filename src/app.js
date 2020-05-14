@@ -9,6 +9,7 @@ import Footer from './app/Footer';
 import ContentPage from './app/ContentPage';
 import NavigatorTop from './app/NavigatorTop';
 import Modales from './app/Modales';
+import LeftPaneContents from './app/LeftPaneContents';
 import { Store_app } from './stores/Store_App';
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
 					<ActivityBarLeft />
 				</ReflexElement>
 				<ReflexElement className='left-pane' minSize={1} size={100}>
-					{/* <LeftPaneContents /> */}
+					<LeftPaneContents />
 				</ReflexElement>
 				<ReflexSplitter propagate={true} />
 				<ReflexElement className='middle-pane' minSize={200}>
@@ -37,10 +38,10 @@ function App() {
 					</ReflexContainer>
 				</ReflexElement>
 
-				<ReflexSplitter propagate={true} />
+				{/* <ReflexSplitter propagate={true} />
 				<ReflexElement className='right-pane' size={80} minSize={6}>
 					<SettingBarRight />
-				</ReflexElement>
+				</ReflexElement> */}
 			</ReflexContainer>
 			<Footer />
 		</>

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { view, store } from '@risingstack/react-easy-state';
 import { Input, Form, Select, Modal, Button } from 'antd';
 import { TagFilled } from '@ant-design/icons';
-import { Store_layouts } from '../ContentPage/PageType_Layout/LayoutBox';
 import { Store_PageOnglets } from '../NavigatorTop';
 import { Store_Modales } from '../Modales';
 import { Store_treeSheets } from '../../stores/Store_TreeData';
+import { Store_layouts } from '../ContentPage/PageType_Layout/Layouts';
 
 const { Option, OptGroup } = Select;
 
@@ -14,8 +14,6 @@ function handleChange(value) {
 }
 /** Si form succes to finish: Build data with value */
 function onFinish(data) {
-	//todo setting id, template ...
-	Store_layouts.create(data.id, data.settingId);
 	Store_PageOnglets.create(data.id);
 	Store_Modales.setVisibility(false);
 }

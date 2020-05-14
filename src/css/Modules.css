@@ -4,7 +4,7 @@
 	display: block;
 	background: #ffffff03;
 	padding: 16px 10px 10px;
-	margin: 5px;
+	margin: 18px 4px;
 	border-radius: 2px;
 	border-style: dashed;
 	border-color: white;
@@ -15,7 +15,7 @@
 
 .ModuleTitle {
 	position: absolute;
-	top: 0px;
+	margin-top: -24px;
 	background: #363636;
 	border-radius: 2px;
 	border-style: dashed;
@@ -30,6 +30,7 @@
 	border-width: 2px;
 	display: flex;
 	border-color: #383838;
+	height: -webkit-fill-available;
 }
 .InputModuleTool {
 	flex-wrap: nowrap;

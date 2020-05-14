@@ -5,12 +5,16 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Ruller from './PageType_Layout/Ruller';
 import { Store_Modules } from '../LeftPaneContents/Activity_Modules';
 import LayoutBox from './PageType_Layout/LayoutBox';
+import Layouts from './PageType_Layout/Layouts';
+import { Store_PageOnglets } from '../NavigatorTop';
 
 const PageType_Layout = () => {
 	const [_spaceBar, _set_spaceBar] = useState(false);
-	const { dropId } = Store_Modules;
+	const { dropData: dropId } = Store_Modules;
 	const { width, cols } = { width: 1000, cols: 12 }; //TODO:Store_layoutSettings.getById(); //todo: hum voir comment repropager
 	const _zoomValue = 1; //todo
+
+	const { id } = Store_PageOnglets.getCurrentSelected(); // on extract le id (root) de la page afficher
 	function onKeyDown(e) {
 		if (e.keyCode === 32) {
 			e.preventDefault();
@@ -54,7 +58,7 @@ const PageType_Layout = () => {
 						>
 							Camera:positionX:{positionX}.positionY:{positionY}
 							width: {width / cols}
-							{<LayoutBox />}
+							{<Layouts id={id} />}
 							{/* {root.map((dataLayout) => (
 								<Layout
 									key={String(Math.random())}

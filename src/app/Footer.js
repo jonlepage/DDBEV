@@ -3,6 +3,7 @@ import { Box } from '@material-ui/core';
 import { view, store } from '@risingstack/react-easy-state';
 import { Typography } from 'antd';
 import { Store_treeSheets } from '../stores/Store_TreeData';
+import { Store_layouts } from './ContentPage/PageType_Layout/Layouts';
 const { Text } = Typography;
 class Footer extends React.Component {
 	constructor(props) {
@@ -42,7 +43,7 @@ class Footer extends React.Component {
 						</Text>
 					</Box>
 					<Box px={1} mx={1} bgcolor='grey.800'>
-						{Store_treeSheets.node_selected || 'Action'}
+						{Store_layouts._selected || 'Action'}
 					</Box>
 					<Box px={1} mx={1} bgcolor='grey.800'>
 						loading

@@ -18,7 +18,6 @@ const ActivityBarLeft = () => {
 			onChange={onChange}
 		>
 			{Store_LeftPan.ACTIVITY.map((data, i) => {
-				console.log('data: ', { ...data });
 				return (
 					<TabPane
 						key={data.id}

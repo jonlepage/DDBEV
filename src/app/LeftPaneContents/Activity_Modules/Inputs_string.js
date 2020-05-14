@@ -11,16 +11,52 @@ import {
 	TagOutlined,
 	InfoCircleTwoTone,
 } from '@ant-design/icons/lib/icons';
-import { Store_Module_inputString } from '../Activity_Modules';
 const { Text } = Typography;
 
-const Inputs_string = ({ dataId }) => {
-	const data = Store_Module_inputString.getById(dataId);
-	const settings = data.getSetting();
+export const Store_Module_inputString = store({
+	/** utiliser pour la creaction de nouveau data */
+	DEFAULT: {
+		id: 'DEFAULT',
+		settings: {
+			displayTool: {
+				flexDirection: {
+					css: 'flexDirection',
+					LIST: ['column', 'column-reverse', 'row', 'row-reverse'],
+					title: 'Tool Directions',
+					value: 'row-reverse',
+				},
+				alignItems: {
+					css: 'alignItems',
+					LIST: ['center', 'flex-end', 'flex-start'],
+					title: 'Tool align',
+					value: 'flex-start',
+				},
+			},
+		},
+		/** returnera un setting par id TODO: STORE */
+		getSetting() {
+			return this.settingId; //Sore_setting.getById(this.settingId)
+		},
+	},
+	title: 'Input String',
+	/** tous les layout creer */
+	data: {},
+	/** creer le module, et lui passe le dataId
+	 * Si null ou undefined va utiliser default
+	 */
+	getView(id) {
+		return <Inputs_string id={id} />;
+	},
+	getById(id) {
+		return this.data[id] || this.DEFAULT;
+	},
+});
+const Inputs_string = ({ id }) => {
+	const { settings } = Store_Module_inputString.getById(id);
 	return (
 		<>
 			<div>
-				<div
+				{/* <div
 					className='InputModule'
 					style={{
 						flexDirection: settings.displayTool.flexDirection.value,
@@ -51,7 +87,13 @@ const Inputs_string = ({ dataId }) => {
 							/>
 						</div>
 					</div>
-				</div>
+				</div> */}
+				<Input
+					id='zzzzz'
+					size='small'
+					prefix={<EditFilled />}
+					defaultValue=''
+				/>
 			</div>
 		</>
 	);

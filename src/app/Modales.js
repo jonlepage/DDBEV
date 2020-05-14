@@ -3,6 +3,7 @@ import { view, store } from '@risingstack/react-easy-state';
 import ModaleType_dataClass from './Modales/ModaleType_dataClass';
 
 export const Store_Modales = store({
+	/** si le modale est visible */
 	_visible: false,
 	data: [],
 	/** if modal is visible or no? true freeze all action not related to modalContent */

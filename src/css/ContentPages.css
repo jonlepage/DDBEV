@@ -32,6 +32,7 @@
 	background-repeat: round;
 	background-position-x: 0px;
 	background-color: #141111;
+	margin-bottom: 14px;
 	/* background-size: 24px 24px;
 	background-image: linear-gradient(to right, #ff000059 1px, #ffffff00 2px),
 		linear-gradient(to bottom, #ff000045 1px, #ffffff00 2px); */
@@ -40,16 +41,31 @@
 	/* width: 0px;
 	height: 0px;
 	min-width: 1000px; */
-	border-style: solid;
+	/* border-style: solid;
 	border-color: #0b8eff;
-	background-color: #2d2121;
-	overflow: auto;
+	background-color: #2d2121; */
+	outline: 3px dashed #00000096;
+	/* overflow: hidden; */
 	/* padding: 10px;
 	background-color: #6a31a91a;
 	background-size: 14px 14px;
 	background-image: linear-gradient(to right, #ffffff 1px, #ffffff00 2px),
 		linear-gradient(to bottom, #ffffff 1px, #ffffff00 2px);
 	background-color: #325d84; */
+}
+
+.GridContentId {
+	position: absolute;
+	z-index: 1;
+	top: -20px;
+}
+.GridContentFlow {
+	overflow: scroll;
+	width: -webkit-fill-available;
+	height: -webkit-fill-available;
+	/* padding: 14px; */
+	/* margin-bottom: -8px;
+	margin-right: -8px; */
 }
 .react-transform-component {
 	width: 0px !important;

@@ -1,39 +1,67 @@
 import React, { useState } from 'react';
-import { Box } from '@material-ui/core';
 import { view, store } from '@risingstack/react-easy-state';
 import { Slider, Radio, Tooltip } from 'antd';
 import Store_DataPage, {
 	Store_DataBaseStorage,
 	Store_Settings,
-	Store_layoutSettings,
 } from '../../stores/Store_DataPage';
 import { SketchPicker } from 'react-color';
+import { Store_PageOnglets } from '../NavigatorTop';
 
-/** creer un context de setting */
-function provideSetting(key) {
-	switch (key) {
-		case 'width':
-			return setting_width(key);
-			break;
-		case 'cols':
-			return setting_cols(key);
-			break;
-		case 'margin':
-			return setting_margin(key);
-			break;
-		case 'compactType':
-			return setting_compactType(key);
-			break;
-		case 'backgroundColor':
-			return setting_backgroundColor(key);
-			break;
-		default:
-			<div key={key}> unknow seting module</div>;
-			break;
-	}
-}
-function setting_width(key) {
-	const Settings = Store_layoutSettings.getById(); // root seting layout de base, passer en pros ?
+/**
+ * @typedef {Object} LayoutSettings - Data Setting layouts
+ * @property {number} Setting_layout.width - Largeur maximal du layou
+ * @property {number} Setting_layout.cols - Nombre de cols du layout
+ * @property {number} Setting_layout.rowHeight - Nombre de cols du layout
+ * @property {{ x: number, y: number }} Setting_layout.margin - Margin entre les cols
+ * @property {"vertical" | "horizontal"} Setting_layout.compactType - Compacteur automatique des grids
+ * @property {boolean} Setting_layout.preventCollision - Previen les collisions pendant les drags de layouts
+ * @property {string} Setting_layout.backgroundColor - Previen les collisions pendant les drags de layouts
+ * @property {string} Setting_layout.gridColor - Previen les collisions pendant les drags de layouts
+ * @property {number} Setting_layout.gridThickness - Previen les collisions pendant les drags de layouts
+ */
+
+export const Store_layoutSettings = store({
+	/**@type {LayoutSettings} - Default template for layoutSetting */
+	MODELE: {
+		/** Largeur maximal du layout */
+		width: 1000,
+		/** Nombre de cols du layout */
+		cols: 24,
+		/** Nombre de cols du layout */
+		rowHeight: 25,
+		/** Margin entre les cols */
+		margin: { x: 0, y: 0 },
+		/** Compacteur automatique des grids */
+		compactType: null,
+		/** Previen les collisions pendant les drags de layouts */
+		preventCollision: true,
+		/** TODO: voir  la bonne aproche */
+		backgroundColor: '#24799e',
+		gridColor: '#ff1453',
+		gridThickness: 1,
+	},
+	/** les template sauvegarder qui peuvent etre partager */
+	template: {},
+	/** les setting layout par id */
+	data: {},
+	/**@returns {LayoutSettings} */
+	getById(id) {
+		return this.data[id] || { ...this.MODELE };
+	},
+	/** Create setting id, clone default ou id existant, ref:pas de clone, mais referance direct mutable,  */
+	create(id, cloneId, ref) {
+		//Todo: ref direct mutable (sans destructure)
+		const newData = { ...this.MODELE, id };
+		this.data[id] = newData;
+	},
+	isExiste(id) {
+		return !!this.data[id];
+	},
+});
+
+function setting_width(id, key) {
+	const Settings = Store_layoutSettings.getById(id); // root seting layout de base, passer en pros ?
 	const value = Settings[key];
 	function onChange_width(value) {
 		Settings.width = value;
@@ -85,8 +113,8 @@ function setting_margin(key) {
 		</div>
 	);
 }
-function setting_cols(key) {
-	const Settings = Store_layoutSettings.getById(); // root seting layout de base, passer en pros ?
+function setting_cols(id, key) {
+	const Settings = Store_layoutSettings.getById(id); // root seting layout de base, passer en pros ?
 	const value = Settings[key];
 	function onChange_width(value) {
 		Settings.cols = value;
@@ -111,8 +139,8 @@ function setting_cols(key) {
 		</div>
 	);
 }
-function setting_compactType(key) {
-	const Settings = Store_layoutSettings.getById(); // root seting layout de base, passer en pros ?
+function setting_compactType(id, key) {
+	const Settings = Store_layoutSettings.getById(id); // root seting layout de base, passer en pros ?
 	const options = [
 		{ label: 'null', value: 'null' },
 		{ label: 'vertical', value: 'vertical' },
@@ -168,7 +196,7 @@ function setting_backgroundColor(key) {
 	);
 }
 /** configurations dun layout active */
-const Setting_Layout = () => {
+const Setting_Layout = ({ id }) => {
 	// const dataLayout = Store_DataBaseStorage.getFromId(
 	// 	Store_DataBaseStorage.currentSelected
 	// );
@@ -205,10 +233,31 @@ const Setting_Layout = () => {
 	// 	setting.css.gridColor = colorStr;
 	// }
 
-	const SettingsKeys = Object.keys(Store_layoutSettings.getById());
+	const SettingsKeys = Object.keys(Store_layoutSettings.getById(id));
 	return (
 		<>
-			{SettingsKeys.map((key) => provideSetting(key))}
+			{SettingsKeys.map((key) => {
+				switch (key) {
+					case 'width':
+						return setting_width(id, key);
+						break;
+					case 'cols':
+						return setting_cols(id, key);
+						break;
+					case 'margin':
+						// return setting_margin(key);
+						break;
+					case 'compactType':
+						return setting_compactType(id, key);
+						break;
+					case 'backgroundColor':
+						// return setting_backgroundColor(key);
+						break;
+					default:
+						<div key={key}> unknow seting module</div>;
+						break;
+				}
+			})}
 			{/* <h3>Selected: {Store_DataBaseStorage.currentSelected}</h3>
 			<h4>Max Layout width</h4>
 			<Slider
