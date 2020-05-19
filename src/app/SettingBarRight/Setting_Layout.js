@@ -4,7 +4,7 @@ import { Slider, Radio, Tooltip } from 'antd';
 import Store_DataPage, {
 	Store_DataBaseStorage,
 	Store_Settings,
-} from '../../stores/Store_DataPage';
+} from '../../../temp/Store_DataPage';
 import { SketchPicker } from 'react-color';
 import { Store_PageOnglets } from '../NavigatorTop';
 
@@ -38,7 +38,7 @@ export const Store_layoutSettings = store({
 		preventCollision: true,
 		/** TODO: voir  la bonne aproche */
 		backgroundColor: '#24799e',
-		gridColor: '#ff1453',
+		gridColor: '#0000002b',
 		gridThickness: 1,
 	},
 	/** les template sauvegarder qui peuvent etre partager */
@@ -161,8 +161,8 @@ function setting_compactType(id, key) {
 		</div>
 	);
 }
-function setting_backgroundColor(key) {
-	const Settings = Store_layoutSettings.getById(); // root seting layout de base, passer en pros ?
+function setting_backgroundColor(id, key) {
+	const Settings = Store_layoutSettings.getById(id); // root seting layout de base, passer en pros ?
 	const value = Settings[key];
 	function onChange_backgroundColor(color) {
 		// + Math.round(color.rgb.a * 255).toString(16);
@@ -170,7 +170,7 @@ function setting_backgroundColor(key) {
 		if (color.rgb.a !== 1) {
 			colorStr = `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`;
 		}
-		Settings.backgroundColor = colorStr;
+		Settings[key] = colorStr;
 	}
 	return (
 		<div key={key}>
@@ -189,7 +189,9 @@ function setting_backgroundColor(key) {
 						textAlign: 'center',
 					}}
 				>
-					<h4>Background colors {value}</h4>
+					<h4>
+						{key} colors {value}
+					</h4>
 				</div>
 			</Tooltip>
 		</div>
@@ -251,7 +253,8 @@ const Setting_Layout = ({ id }) => {
 						return setting_compactType(id, key);
 						break;
 					case 'backgroundColor':
-						// return setting_backgroundColor(key);
+					case 'gridColor':
+						return setting_backgroundColor(id, key);
 						break;
 					default:
 						<div key={key}> unknow seting module</div>;

@@ -14,7 +14,6 @@ const PageType_Layout = () => {
 	const { width, cols } = { width: 1000, cols: 12 }; //TODO:Store_layoutSettings.getById(); //todo: hum voir comment repropager
 	const _zoomValue = 1; //todo
 
-	const { id } = Store_PageOnglets.getCurrentSelected(); // on extract le id (root) de la page afficher
 	function onKeyDown(e) {
 		if (e.keyCode === 32) {
 			e.preventDefault();
@@ -58,7 +57,7 @@ const PageType_Layout = () => {
 						>
 							Camera:positionX:{positionX}.positionY:{positionY}
 							width: {width / cols}
-							{<Layouts id={id} />}
+							{/* {<Layouts id={id} />} */}
 							{/* {root.map((dataLayout) => (
 								<Layout
 									key={String(Math.random())}

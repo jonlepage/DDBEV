@@ -2,10 +2,7 @@ import React from 'react';
 import { Box } from '@material-ui/core';
 import { view, store } from '@risingstack/react-easy-state';
 import GridLayout from 'react-grid-layout';
-import {
-	Store_DataBaseStorage,
-	Store_Settings,
-} from '../../stores/Store_DataPage';
+import { Store_DataBaseStorage, Store_Settings } from './Store_DataPage';
 
 /**@param {MouseEvent} e */
 function onClick(e, id) {

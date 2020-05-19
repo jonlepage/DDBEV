@@ -5,8 +5,8 @@ import GridLayout from 'react-grid-layout';
 import {
 	Store_DataBaseStorage,
 	Store_Settings,
-} from '../../../stores/Store_DataPage';
-import { Store_app } from '../../../stores/Store_App';
+} from '../../../../temp/Store_DataPage';
+import { Store_App } from '../../../../temp/Store_App';
 import { Store_Modules } from '../../LeftPaneContents/Activity_Modules';
 import { Store_PageOnglets } from '../../NavigatorTop';
 import Inputs_tag, {

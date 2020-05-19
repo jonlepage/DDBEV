@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { view, store } from '@risingstack/react-easy-state';
 import { Typography } from 'antd';
 import { InfoCircleTwoTone } from '@ant-design/icons';
 const { Text } = Typography;
 
+/** Un input Tag est un icon avec un tag name
+ * permet l'auto link via un input value local ou global
+ */
 export const Store_Inputs_tag = store({
+	SETTING: {
+		backgroundColor: '#24799e',
+	},
 	MODELE: {
 		/** id unique du layout, peut utiliser dans key car unique */
 		id: '',
@@ -19,6 +25,7 @@ export const Store_Inputs_tag = store({
 		/** setting du grid qui englobe le module  */
 		datagrid: { x: 1, y: 1, w: 2, h: 1, minW: 1, minH: 1 },
 	},
+	dataSetting: {},
 	data: {},
 	getView(id) {
 		return <Inputs_tag id={id} key={id} />;
@@ -26,8 +33,13 @@ export const Store_Inputs_tag = store({
 	getDataById(id) {
 		return this.data[id];
 	},
+	getSettingById(id) {
+		return this.dataSetting[id];
+	},
 	createData(id) {
 		const data = { ...this.MODELE, id };
+		const dataSetting = { ...this.SETTING };
+		this.dataSetting[id] = dataSetting;
 		return (this.data[id] = data);
 	},
 
@@ -39,18 +51,7 @@ const Inputs_tag = ({ id }) => {
 	const { parentId, childrenId, settingId, datagrid } =
 		store.getDataById(id) || store.createData(id);
 	return (
-		<div
-			id={id}
-			key={id}
-			className='ContentGrid'
-			// data-grid={datagrid}
-			// style={isSelected ? { outline: '3px dashed #ffffff' } : {}}
-			// onMouseOver={(e) => onMouseEnter(e, _id)}
-			// onMouseLeave={(e) => onMouseLeave(e, id)}
-			onClick={(e) => {
-				store._hover = !store._hover;
-			}}
-		>
+		<div id={id} key={id} className='ContentInput'>
 			<Text type='secondary'>
 				<InfoCircleTwoTone />
 				Lorem ipsum dolor sit amet...

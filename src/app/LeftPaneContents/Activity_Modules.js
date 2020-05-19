@@ -6,15 +6,21 @@ import { Store_Module_inputString } from './Activity_Modules/Inputs_string';
 import { Store_Inputs_tag } from './Activity_Modules/Inputs_tag';
 import { Checkbox } from 'antd';
 import { Store_Module_layout } from './Activity_Modules/Module_layout';
-
 const CheckboxGroup = Checkbox.Group;
-
 const { Text } = Typography;
 const { Panel } = Collapse;
-//TODO: RENDU ICI, SASURER QUE LES SETTING SON INTUITIF ET FONCTIONELLE
+
+/**
+ * @typedef {Object} MODULES_TYPE - Les types de modules qui reference leur stores
+ * @property {Store_Module_inputString} string - Largeur maximal du layout
+ * @property {Store_Inputs_tag} tag - Largeur maximal du layout
+ * @property {Store_Module_layout} layout - Largeur maximal du layout
+
+ */
+
 /** Store Input? */
 export const Store_Modules = store({
-	TYPE: {
+	STORES: {
 		string: Store_Module_inputString,
 		tag: Store_Inputs_tag,
 		layout: Store_Module_layout,
@@ -30,15 +36,20 @@ export const Store_Modules = store({
 	onDragEnd() {
 		this.dropData = null;
 	},
-
+	//TODO: FAIRE UN GETVIEW GETSTORE ?
+	//
 	/** return input view selon type, passe par le store respectif du input pour creer un view */
 	/**@param {'string'} type */
 	getInputView(type, id) {
-		const store = this.TYPE[type]; // store du input
+		const store = this.STORES[type]; // store du input
 		if (!store) {
 			return <>Fatal error , type not existe</>;
 		}
 		return store.getView(id);
+	},
+
+	getStore(type) {
+		return this.STORES[type];
 	},
 });
 /** list des elements modules implementable */
@@ -53,7 +64,7 @@ const Activity_Modules = () => {
 			<CheckboxGroup options={['decorative', 'strings', 'numbers']} />
 			<Collapse defaultActiveKey={['SingleModules']}>
 				<Panel header='Single Modules' key='SingleModules'>
-					{Object.keys(Store_Modules.TYPE).map((type, i) => {
+					{Object.keys(Store_Modules.STORES).map((type, i) => {
 						// pour chaque data, affiche modules
 						return (
 							<div

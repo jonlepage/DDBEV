@@ -3,7 +3,7 @@ import { view } from '@risingstack/react-easy-state';
 import Activity_DataTree from './LeftPaneContents/Activity_DataTree';
 import Activity_Modules from './LeftPaneContents/Activity_Modules';
 import Activity_Plugins from './LeftPaneContents/Activity_Plugins';
-import { Store_LeftPan } from '../stores/Store_LeftPan';
+import { Store_LeftPan } from '../../temp/Store_LeftPan';
 import SettingBarRight from './SettingBarRight';
 function getContent(selectedID) {
 	let content;

@@ -78,7 +78,11 @@
 }
 .reflex-splitter {
 	border-color: #646464 !important;
-	transition: all 50ms;
+	transition: all 200ms cubic-bezier(0, -0.54, 0.13, 0.29) !important;
+	width: 7px !important;
+	background-color: #5e5e5ecc !important;
+	border-top: 2px solid #ff8100 !important;
+	border-bottom: 2px solid #ff8100 !important;
 }
 
 .ant-radio-checked .ant-radio-inner {

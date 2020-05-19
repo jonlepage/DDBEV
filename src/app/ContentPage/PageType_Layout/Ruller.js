@@ -3,8 +3,6 @@ import { Box } from '@material-ui/core';
 import { view, store } from '@risingstack/react-easy-state';
 
 const Ruller = () => {
-	const [_state, _setState] = useState('value'); // react hook states
-	const lstore = store({ _state: 30 }); // store states local
 	const ruleLabels = Array.from({ length: cols }, (x, i) => (
 		<label style={{ width: `${width / cols}px` }} key={i}>
 			{i}

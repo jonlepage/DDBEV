@@ -3,6 +3,7 @@ import { Box } from '@material-ui/core';
 import { view, store } from '@risingstack/react-easy-state';
 import GridLayout from 'react-grid-layout';
 import { Store_layoutSettings } from '../../SettingBarRight/Setting_Layout';
+import { Store_Global } from '../../../stores/Store_Global';
 
 export const Store_Module_layout = store({
 	MODELE: {
@@ -23,19 +24,18 @@ export const Store_Module_layout = store({
 	getView(id) {
 		return <Module_layout id={id} key={id} />;
 	},
-	getDataById(id) {
-		return this.data[id];
-	},
-	createData(id) {
-		const data = { ...this.MODELE, id };
-		return (this.data[id] = data);
-	},
-
-	_hover: false,
+	// getDataById(id) {
+	// 	return this.data[id];
+	// },
+	// createData(id) {
+	// 	const data = { ...this.MODELE, id };
+	// 	return (this.data[id] = data);
+	// },
+	// _hover: false,
 });
 
 const Module_layout = ({ id }) => {
-	const store = Store_Module_layout;
+	const { settings, grids } = Store_Global.getDataByUID(id);
 	let {
 		width,
 		cols,
@@ -44,10 +44,9 @@ const Module_layout = ({ id }) => {
 		gridColor,
 		gridThickness,
 		margin,
-	} = Store_layoutSettings.getById(id);
-	const { datagrid } = store.getDataById(id) || store.createData(id);
+	} = settings;
 	const alpha = 1;
-	width = (width / cols) * datagrid.w;
+	width = (width / cols) * grids.datagrid.w;
 	//todo: width est = a parentroot*datagrid.w
 	const styles = {
 		width: width,

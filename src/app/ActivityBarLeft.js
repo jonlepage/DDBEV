@@ -2,7 +2,7 @@ import React from 'react';
 import { view } from '@risingstack/react-easy-state';
 import { Tabs } from 'antd';
 
-import { Store_LeftPan } from '../stores/Store_LeftPan';
+import { Store_LeftPan } from '../../temp/Store_LeftPan';
 const { TabPane } = Tabs;
 
 const ActivityBarLeft = () => {

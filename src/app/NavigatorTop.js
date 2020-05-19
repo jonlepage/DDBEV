@@ -1,71 +1,59 @@
-import React, { useState } from 'react';
-import { Box } from '@material-ui/core';
+import React from 'react';
 import { view, store } from '@risingstack/react-easy-state';
-import { Radio, Button } from 'antd';
+import { Radio, Button, Space } from 'antd';
+import { PlusSquareFilled, CloseOutlined } from '@ant-design/icons';
 import { Store_Modales } from './Modales';
-import { PlusSquareFilled } from '@ant-design/icons';
 import { Store_layouts } from './ContentPage/PageType_Layout/Layouts';
+import NavEasyButtons from './NavigatorTop/NavEasyButtons';
+import { Store_Global } from '../stores/Store_Global';
+
+/**
+ * @typedef {Object} MODELE - Data for build GridLayout
+ * @property {string} id - Id unique of the page
+ * @property {string} ext - Extention type de la page
+ * @property {number} index - Index de longlet
+ * @property {boolean} visible - si longlet est visible ? ou fermer X
+ */
 
 /** Store Componment */
 export const Store_PageOnglets = store({
-	MODELE: {
-		/** id name de la page */
-		id: '',
-		/** extention assosier [.class,.sheet,.validator] */
-		ext: '',
-		/** index dans la nav */
-		index: -1,
-		pageType: '',
-		/** si la page est visible ou fermer */
-		visible: true,
-	},
-	_currentSelect: 0,
-	data: [],
-	/** Creer une nouvelle page */
-	create(id = 'created_unknow', pageType = 'Layout') {
-		const index = this.data.length;
-		const newData = { ...this.MODELE, index, id, pageType };
-		this.data.push(newData);
-		this._currentSelect = index;
-		// create page content ? la ces layouts, voir pour les autre
-		Store_layouts.create(id);
-	},
-	getCurrentSelected() {
-		return this.data[this._currentSelect] || {};
-	},
+	name: 'Store_PageOnglets',
 });
+/** @param {string} value */
+function onChange(value) {
+	Store_Global._selectedUID = value;
+}
 
 /** Affiche les bouton de creation, et tous les page Ouvert */
 const NavigatorTop = () => {
-	const { data, _currentSelect } = Store_PageOnglets;
+	const { DATA, _selectedUID } = Store_Global;
 	return (
 		<div className='NavigatorTop'>
-			<Button type='primary' onClick={() => Store_Modales.setVisibility(true)}>
-				<PlusSquareFilled />
-				Class
-			</Button>
-			<Button type='primary' onClick={() => null}>
-				<PlusSquareFilled />
-				Sheet
-			</Button>
-			<Button type='primary' onClick={() => null}>
-				<PlusSquareFilled />
-				Validator
-			</Button>
+			<NavEasyButtons />
 			<Radio.Group
-				className={'NavigatorTop_Group'}
-				value={_currentSelect}
+				className='NavigatorTop_Group'
 				buttonStyle='solid'
-				size={'small'}
-				onChange={(e) => (Store_PageOnglets._currentSelect = e.target.value)}
+				size='small'
+				value={_selectedUID}
+				onChange={(e) => onChange(e.target.value)}
 			>
-				{data.map((_data, i) => {
-					return (
-						<Radio.Button key={i} className={'NavigatorTop_Page'} value={i}>
-							{_data.id}.class
-						</Radio.Button>
-					);
-				})}
+				<Space size={4}>
+					{DATA.map((data, i) => {
+						if (data.onglet.visible) {
+							return (
+								<div key={data.uid} className='NavigatorTop_Page'>
+									<Space size={1}>
+										<Radio.Button value={data.uid}>
+											{data.id}
+											{data.ext}
+										</Radio.Button>
+										<CloseOutlined />
+									</Space>
+								</div>
+							);
+						}
+					})}
+				</Space>
 			</Radio.Group>
 		</div>
 	);

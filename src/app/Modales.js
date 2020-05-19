@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { view, store } from '@risingstack/react-easy-state';
 import ModaleType_dataClass from './Modales/ModaleType_dataClass';
+import { Store_PageOnglets } from './NavigatorTop';
 
 export const Store_Modales = store({
 	/** si le modale est visible */
@@ -13,9 +14,9 @@ export const Store_Modales = store({
 });
 /** tool qui apelle des modale */
 const Modales = () => {
-	const isVisible = Store_Modales._visible;
+	const { modaleData } = Store_PageOnglets;
 	return (
-		<div className='ModalesBox'>{isVisible && <ModaleType_dataClass />}</div>
+		<div className='ModalesBox'>{modaleData && <ModaleType_dataClass />}</div>
 	);
 };
 

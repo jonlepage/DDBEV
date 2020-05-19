@@ -1,50 +1,50 @@
-import React, { useState } from 'react';
-import { view } from '@risingstack/react-easy-state';
+import React from 'react';
+import { view, store } from '@risingstack/react-easy-state';
 import { ReflexContainer, ReflexSplitter, ReflexElement } from 'react-reflex';
-import RectangleSelection from 'react-rectangle-selection';
 import OsNav from './app/OsNav';
 import ActivityBarLeft from './app/ActivityBarLeft';
-import SettingBarRight from './app/SettingBarRight';
 import Footer from './app/Footer';
 import ContentPage from './app/ContentPage';
 import NavigatorTop from './app/NavigatorTop';
 import Modales from './app/Modales';
 import LeftPaneContents from './app/LeftPaneContents';
-import { Store_app } from './stores/Store_App';
 
-function App() {
+/** le store globaux app */
+export const Store_App = store({
+	/** fixing update issue when rezine nwjs */
+	resizeId: 0,
+	/**current level editor */
+	levelEditor: 0,
+	updateResize() {
+		this.resizeId = this.resizeId + 1;
+	},
+});
+
+window.addEventListener('resize', () => {
+	Store_App.updateResize();
+});
+
+const App = () => {
+	const { resizeId } = Store_App;
 	return (
 		<>
 			<Modales />
 			<OsNav />
 			<NavigatorTop />
-			<ReflexContainer key={Store_app.resizeId} orientation='vertical'>
-				<ReflexElement minSize={41} size={41} maxSize={41}>
+			<ReflexContainer key={resizeId} orientation='vertical'>
+				<ReflexElement minSize={41} maxSize={41}>
 					<ActivityBarLeft />
 				</ReflexElement>
 				<ReflexElement className='left-pane' minSize={1} size={100}>
 					<LeftPaneContents />
 				</ReflexElement>
-				<ReflexSplitter propagate={true} />
-				<ReflexElement className='middle-pane' minSize={200}>
-					<ReflexContainer orientation='horizontal'>
-						{/* <ReflexElement size={20}>
-							<PageTopTool />
-						</ReflexElement>
-						<ReflexSplitter /> */}
-						<ReflexElement>
-							<ContentPage />
-						</ReflexElement>
-					</ReflexContainer>
+				<ReflexSplitter />
+				<ReflexElement className='right-pane'>
+					<ContentPage />
 				</ReflexElement>
-
-				{/* <ReflexSplitter propagate={true} />
-				<ReflexElement className='right-pane' size={80} minSize={6}>
-					<SettingBarRight />
-				</ReflexElement> */}
 			</ReflexContainer>
 			<Footer />
 		</>
 	);
-}
+};
 export default view(App);

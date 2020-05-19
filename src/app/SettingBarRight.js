@@ -5,6 +5,9 @@ import { SettingOutlined } from '@ant-design/icons';
 import Setting_base from './SettingBarRight/Setting_base';
 import Setting_Layout from './SettingBarRight/Setting_Layout';
 import { Store_PageOnglets } from './NavigatorTop';
+import { Store_layouts } from './ContentPage/PageType_Layout/Layouts';
+import Settings from './SettingBarRight/Settings';
+import { Store_Grids } from './ContentPage/PageType_Layout/Grids';
 
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -62,12 +65,14 @@ class SettingBarRight extends React.Component {
 					</Panel>
 					{id && (
 						<Panel header='Layout Settings' key='1' extra={genExtra()}>
-							<Setting_Layout id={id} />
+							{/* <Setting_Layout id={id} /> */}
 						</Panel>
 					)}
-					<Panel header='Selected Settings' key='2' extra={genExtra()}>
-						<div>{text}</div>
-					</Panel>
+					{Store_Grids._selectedId && (
+						<Panel header='Selected Settings' key='2' extra={genExtra()}>
+							<Settings id={Store_Grids._selectedId} />
+						</Panel>
+					)}
 				</Collapse>
 				<br />
 				<span>Expand Icon Position: </span>

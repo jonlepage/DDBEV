@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@material-ui/core';
 import { view, store } from '@risingstack/react-easy-state';
 import { Radio, Tooltip, Button, Switch } from 'antd';
-import { Store_ToolsEditor } from '../../stores/Store_ToolsEditor';
+import { Store_ToolsEditor } from '../../../temp/Store_ToolsEditor';
 
 function createToolGroup(i) {
 	const data = Store_ToolsEditor.data[i];
