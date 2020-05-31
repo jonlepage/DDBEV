@@ -1,26 +1,27 @@
 import React from 'react';
+import { view } from '@risingstack/react-easy-state';
 import ReactJson from 'react-json-view';
-import { view, store } from '@risingstack/react-easy-state';
-import { Store_Global } from '../../stores/Store_Global';
+import { Store_ContentPage } from '../ContentPage.store';
 
-export const Store_PageData = store({
-	getView(args) {
-		return <PageData />;
-	},
-});
-
+/** Expose les data stores pour du debug */
 const PageData = () => {
-	const { _selectedUID, DATA } = Store_Global;
+	const { DATA } = Store_ContentPage;
 	return (
 		<>
-			{_selectedUID}
-			<ReactJson
-				theme='railscasts'
-				name='STORES'
-				// sortKeys={true}
-				collapsed={true}
-				src={DATA}
-			/>
+			{Store_ContentPage.NAME}
+			{DATA.map((data, i) => {
+				const { NAME } = data;
+				return (
+					<ReactJson
+						key={i}
+						theme='railscasts'
+						name={NAME}
+						// sortKeys={true}
+						collapsed={true}
+						src={data}
+					/>
+				);
+			})}
 		</>
 	);
 };

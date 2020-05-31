@@ -1,0 +1,8 @@
+
+Faire sont plugin dans une version sdk
+click sur le bouton publiyer
+voir https://www.npmjs.com/package/react-dynamic-import
+https://medium.com/@siwakornsittilerdpaisal/how-to-use-dynamic-import-on-es6s-modules-ec5c2138f2f6
+import(`library-${argument1}`) 
+pour import dynamic dun fichier js
+peut etre devoir enlever babel ?

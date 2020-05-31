@@ -4,8 +4,8 @@
 	-webkit-app-region: drag;
 }
 
-.OsMenues {
-	-webkit-app-region: no-drag;
+.OsMenue {
+	-webkit-app-region: no-drag !important;
 }
 
 img.OsMenue {

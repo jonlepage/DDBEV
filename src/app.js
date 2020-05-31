@@ -1,42 +1,28 @@
 import React from 'react';
-import { view, store } from '@risingstack/react-easy-state';
+import { view } from '@risingstack/react-easy-state';
 import { ReflexContainer, ReflexSplitter, ReflexElement } from 'react-reflex';
-import OsNav from './app/OsNav';
-import ActivityBarLeft from './app/ActivityBarLeft';
-import Footer from './app/Footer';
-import ContentPage from './app/ContentPage';
-import NavigatorTop from './app/NavigatorTop';
 import Modales from './app/Modales';
-import LeftPaneContents from './app/LeftPaneContents';
-
-/** le store globaux app */
-export const Store_App = store({
-	/** fixing update issue when rezine nwjs */
-	resizeId: 0,
-	/**current level editor */
-	levelEditor: 0,
-	updateResize() {
-		this.resizeId = this.resizeId + 1;
-	},
-});
-
-window.addEventListener('resize', () => {
-	Store_App.updateResize();
-});
-
+import Header from './app/Header';
+import Navigation from './app/Navigation';
+import ContentPage from './app/ContentPage';
+import { App_store } from './App.store';
+import Footer from './app/Footer';
+import ActivityBar from './app/ActivityBar';
+import Windows from './app/Windows';
+// import ActivityBar from './app/ActivityBar';
+// import PanelContent from './app/PanelContent';
 const App = () => {
-	const { resizeId } = Store_App;
+	const { _updateResize } = App_store;
 	return (
 		<>
-			<Modales />
-			<OsNav />
-			<NavigatorTop />
-			<ReflexContainer key={resizeId} orientation='vertical'>
+			<Header />
+			<Navigation />
+			<ReflexContainer key={_updateResize} orientation='vertical'>
 				<ReflexElement minSize={41} maxSize={41}>
-					<ActivityBarLeft />
+					<ActivityBar />
 				</ReflexElement>
 				<ReflexElement className='left-pane' minSize={1} size={100}>
-					<LeftPaneContents />
+					{/* <PanelContent /> */}
 				</ReflexElement>
 				<ReflexSplitter />
 				<ReflexElement className='right-pane'>
@@ -44,6 +30,8 @@ const App = () => {
 				</ReflexElement>
 			</ReflexContainer>
 			<Footer />
+			<Modales />
+			<Windows />
 		</>
 	);
 };

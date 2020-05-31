@@ -42,7 +42,7 @@
 }
 .ContentGrid:hover {
 	outline-color: #ffffff;
-	mix-blend-mode: difference;
+	/* mix-blend-mode: difference; */
 	outline-width: 3px;
 }
 .GridContentId {
@@ -151,6 +151,7 @@
 	padding: 1px 0px;
 	display: flex;
 	box-shadow: 10px 10px 10px 6px rgba(0, 0, 0, 0.2);
+	min-width: max-content;
 }
 .ToolIcon {
 	padding: 1px 6px;

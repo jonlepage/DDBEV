@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { view, store } from '@risingstack/react-easy-state';
-import ModaleType_dataClass from './Modales/ModaleType_dataClass';
-import { Store_PageOnglets } from './NavigatorTop';
+import React from 'react';
+import { view } from '@risingstack/react-easy-state';
+import Modale_Class from './Modales/Modale_Class';
+import { Store_Modales } from './Modales.store';
+import { DATA_PageClass } from './ContentPage/PageClass.store';
 
-export const Store_Modales = store({
-	/** si le modale est visible */
-	_visible: false,
-	data: [],
-	/** if modal is visible or no? true freeze all action not related to modalContent */
-	setVisibility(value) {
-		this._visible = value;
-	},
-});
-/** tool qui apelle des modale */
 const Modales = () => {
-	const { modaleData } = Store_PageOnglets;
-	return (
-		<div className='ModalesBox'>{modaleData && <ModaleType_dataClass />}</div>
-	);
+	const { data } = Store_Modales;
+	function getView(TYPE) {
+		switch (TYPE) {
+			case DATA_PageClass.NAME:
+				return <Modale_Class data={data} />;
+			default:
+				return 'ERROR MODALE VIEWID';
+		}
+	}
+	if (data) {
+		const { TYPE } = data;
+		return <div className='ModalesBox'>{getView(TYPE)}</div>;
+	}
 };
 
 export default view(Modales);

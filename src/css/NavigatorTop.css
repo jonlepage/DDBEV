@@ -1,5 +1,6 @@
 .NavigatorTop {
 	background: #5b5b5bbf;
+	display: flex;
 }
 .NavigatorTop_Group {
 	padding: 0px 4px;

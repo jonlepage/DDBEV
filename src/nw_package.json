@@ -4,6 +4,12 @@
 	"description": "NW.js and react from sratch",
 	"version": "0.1.0",
 	"chromium-args": "--enable-spell-checking --remote-debugging-port=9222",
+	"permissions": [
+		"chrome-extension://*",
+		"file:///*",
+		"http://*/*",
+		"https://*/*"
+	],
 	"window": {
 		"frame": false,
 		"toolbar": false,

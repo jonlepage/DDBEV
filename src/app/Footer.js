@@ -1,34 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box } from '@material-ui/core';
-import { view, store } from '@risingstack/react-easy-state';
+import { view } from '@risingstack/react-easy-state';
 import { Typography } from 'antd';
-import { Store_treeSheets } from '../../temp/Store_TreeData';
-import { Store_layouts } from './ContentPage/PageType_Layout/Layouts';
-import { Store_PageOnglets } from './NavigatorTop';
-import { Store_Grids } from './ContentPage/PageType_Layout/Grids';
-import { Store_Global } from '../stores/Store_Global';
+
 const { Text } = Typography;
 
 const Footer = () => {
-	const { coor } = Store_Global.MOUSE;
+	// const { coor } = Store_Global.MOUSE;
 	return (
 		<Box display='flex' justifyContent='flex-end' bgcolor='grey.900'>
 			<Box display='flex'>
 				<Box px={1} mx={1}>
 					x:
 					<Text className={'coord'} code>
-						{~~coor.x}
+						{'~~coor.x'}
 					</Text>
 					y:
 					<Text className={'coord'} code>
-						{~~coor.y}
+						{'~~coor.y'}
 					</Text>
 				</Box>
 				<Box px={1} mx={1} bgcolor='grey.800'>
-					{Store_layouts._selected || 'Action'}
+					{'Action'}
 				</Box>
 				<Box px={1} mx={1} bgcolor='grey.800'>
-					select:{Store_Grids._selectedId}
+					select:{'Store_Grids._selectedId'}
 				</Box>
 
 				<div style={{ background: '#282828' }}>

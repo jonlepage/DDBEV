@@ -1,0 +1,14 @@
+.sketch-picker,
+.chrome-picker {
+	border-radius: 2px !important;
+	padding: 6px 6px 0px !important;
+	border-style: outset;
+	border-width: thick;
+	border-color: #777777;
+	user-select: none;
+	-webkit-app-region: no-drag;
+}
+
+.Setting_Switch {
+	display: flex;
+}
