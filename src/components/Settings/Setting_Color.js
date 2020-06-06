@@ -1,6 +1,6 @@
 import React from 'react';
 import { view } from '@risingstack/react-easy-state';
-import { Tooltip } from 'antd';
+import { Tooltip, Popover } from 'antd';
 import { Store_Setting_Color, DATA_Setting_Color } from './Setting_Color.store';
 import { ChromePicker, GithubPicker } from 'react-color';
 
@@ -15,11 +15,14 @@ const Setting_Color = (
 	const { min, max, marks, step } = _setting;
 	const { onChange_backgroundColor } = Store_Setting_Color;
 	//TODO: ON PEUT PERMET PLUSIEUR MODE
+	//TODO: https://www.npmjs.com/package/react-native-pixel-color
+	// add un system color pick pixel, avec pixijs, creer une image canvas
 	return (
 		<div className='Setting_Color'>
-			<Tooltip
+			<Popover
 				placement='left'
-				title={
+				title={'Select color'}
+				content={
 					<>
 						<ChromePicker
 							color={value}
@@ -56,6 +59,7 @@ const Setting_Color = (
 						/>
 					</>
 				}
+				trigger='click'
 			>
 				<div
 					style={{
@@ -70,7 +74,7 @@ const Setting_Color = (
 						{skey} colors {value}
 					</h4>
 				</div>
-			</Tooltip>
+			</Popover>
 		</div>
 	);
 };

@@ -14,7 +14,12 @@ const Setting_Switch = (
 	return (
 		<div className='Setting_Switch'>
 			<div style={{ paddingRight: 10 }}>{skey}:</div>
-			<Switch checkedChildren='true' unCheckedChildren='false' defaultChecked />
+			<Switch
+				checkedChildren='true'
+				unCheckedChildren='false'
+				defaultChecked
+				onChange={(value) => (data[skey] = value)}
+			/>
 		</div>
 	);
 };

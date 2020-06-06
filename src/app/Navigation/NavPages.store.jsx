@@ -14,8 +14,6 @@ export const DATA_NavPages = store({
 });
 
 export const Store_NavPages = store({
-	/** Data UID selected to render */
-	_selectedUID: '',
 	/** @type {Array.<DATA_NavPages>} */
 	DATA: [],
 	/** find and return a data with UID */
@@ -23,7 +21,6 @@ export const Store_NavPages = store({
 		return this.DATA.find((data) => data.UID === UID);
 	},
 	Select(UID, TYPE) {
-		this._selectedUID = UID;
 		!this.isExiste(UID) && this.create(UID, TYPE);
 	},
 	isExiste(UID) {
@@ -32,8 +29,5 @@ export const Store_NavPages = store({
 	create(UID, TYPE) {
 		const data = { ...DATA_NavPages, UID, TYPE };
 		this.DATA.push(data);
-	},
-	onChange(e, UID) {
-		this._selectedUID = UID;
 	},
 });

@@ -15,6 +15,7 @@ const NavButton = () => {
 				const { _title, _icon } = data;
 				return (
 					<Button
+						className='NavButton'
 						key={i}
 						type='primary'
 						/** Doi faire appelel a un formulaire*/

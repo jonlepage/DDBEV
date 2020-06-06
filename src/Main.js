@@ -17,6 +17,7 @@ import './css/NavigatorTop.css';
 import './css/Camera.css';
 import './css/Windows.css';
 import './css/Setting.css';
+import './css/ContextMenue.css';
 
 // import './css/ActivityBarLeft.css';
 // import './css/Footer.css';

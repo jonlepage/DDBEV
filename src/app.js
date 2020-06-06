@@ -9,6 +9,8 @@ import { App_store } from './App.store';
 import Footer from './app/Footer';
 import ActivityBar from './app/ActivityBar';
 import Windows from './app/Windows';
+import PanelContent from './app/PanelContent';
+import ContextMenue from './components/ContextMenue';
 // import ActivityBar from './app/ActivityBar';
 // import PanelContent from './app/PanelContent';
 const App = () => {
@@ -22,7 +24,7 @@ const App = () => {
 					<ActivityBar />
 				</ReflexElement>
 				<ReflexElement className='left-pane' minSize={1} size={100}>
-					{/* <PanelContent /> */}
+					<PanelContent />
 				</ReflexElement>
 				<ReflexSplitter />
 				<ReflexElement className='right-pane'>
@@ -32,6 +34,7 @@ const App = () => {
 			<Footer />
 			<Modales />
 			<Windows />
+			<ContextMenue />
 		</>
 	);
 };

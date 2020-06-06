@@ -1,0 +1,18 @@
+.ContextMenue {
+	position: absolute;
+	border-style: groove;
+	z-index: 999;
+	border-color: #868686;
+	user-select: none;
+}
+.ContextMenue .ant-menu {
+	background: #212121;
+}
+
+.ContextMenue .ant-menu-item {
+	transition: all 0.5s cubic-bezier(0, 0, 0, 1.01);
+}
+.ContextMenue .ant-menu-item:hover {
+	background: #ffffff;
+	color: black;
+}

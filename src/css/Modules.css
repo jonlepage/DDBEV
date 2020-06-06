@@ -1,5 +1,20 @@
 /* Les style globale pour les modules draggable */
-
+.Modules {
+	display: block;
+	overflow: auto;
+	height: -webkit-fill-available;
+}
+.Modules.tool {
+	background: #8b2b00;
+	position: absolute;
+	z-index: 999;
+	margin: 0px 4px;
+	padding: 0px 8px;
+	border-radius: 0px 0px 4px 4px;
+	border-style: outset;
+	border-width: 1px;
+	border-color: #8b5e25;
+}
 .ModuleDragger {
 	display: block;
 	background: #ffffff03;
@@ -36,4 +51,13 @@
 .InputModuleTool {
 	flex-wrap: nowrap;
 	display: flex;
+}
+
+.Mod_Layout {
+	border-style: inset;
+	border-color: #6f6f6f;
+	border-radius: 6px;
+	border-width: 2px;
+	padding: 2px;
+	box-shadow: 4px -1px 17px 0px rgba(0, 0, 0, 0.75);
 }

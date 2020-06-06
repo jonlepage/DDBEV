@@ -3,6 +3,9 @@ import { Store_Windows } from '../../app/Windows.store';
 import { DATA_Setting_Slider } from '../Settings/Setting_Slider.store';
 import { DATA_Setting_Color } from '../Settings/Setting_Color.store';
 import { DATA_Setting_Switch } from '../Settings/Setting_Switch.store';
+import { DATA_Setting_Select } from '../Settings/Setting_Select.store';
+import { Data_Modules } from '../Modules.store';
+import { UTILITY } from '../../stores/Store_Global';
 
 export const Data_Settings = store({
 	slider: '',
@@ -48,7 +51,10 @@ export const SETTING_Mod_Layout = store({
 	// /** Margin entre les cols */
 	// // margin: { x: 0, y: 0 },
 	// /** Compacteur automatique des grids */
-	// compactType: { v: null, t: Data_Settings.Select },
+	compactType: {
+		...DATA_Setting_Select,
+		options: [null, 'horizontal', 'vertical'],
+	},
 	// /** Previen les collisions pendant les drags de layouts */
 	preventCollision: { ...DATA_Setting_Switch },
 	backgroundColor: { ...DATA_Setting_Color },
@@ -70,7 +76,6 @@ export const DATA_Mod_Layout = store({
 	NAME: 'DATA_Mod_Layout',
 	UID: '',
 	MUID: '',
-	childrens: [],
 	/** Largeur maximal du layout */
 	width: 1200,
 	/** Nombre de cols du layout */
@@ -81,11 +86,11 @@ export const DATA_Mod_Layout = store({
 	/** Margin entre les cols */
 	// margin: { x: 0, y: 0 },
 	/** Compacteur automatique des grids */
-	compactType: 'vertical',
+	compactType: null,
 	/** Previen les collisions pendant les drags de layouts */
 	preventCollision: true,
 	/** TODO: voir  la bonne aproche */
-	backgroundColor: '#24799e',
+	backgroundColor: '#2F2F2F',
 	gridColor: '#0000002b',
 	gridThickness: 1,
 });
@@ -95,15 +100,21 @@ export const Store_Mod_Layout = store({
 	/**TODO: FAIRE une method create, inclu setting */
 	/** @type {Array.<DATA_Mod_Layout>} */
 	DATA: [],
+	/**@type {Data_Modules} Drag and drop data */
+	dndData: null,
 	getData(MUID) {
 		return this.DATA.find((data) => data.MUID === MUID);
 	},
 	/** create un DATA_PageData */
-	create(UID, MUID) {
+	create(UID, MUID, _nestedIndex) {
 		const data = {
 			...DATA_Mod_Layout,
 			UID,
 			MUID,
+			backgroundColor: UTILITY.increase_brightness(
+				DATA_Mod_Layout.backgroundColor,
+				20 * _nestedIndex
+			),
 		};
 		this.DATA.push(data);
 		return data;

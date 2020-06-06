@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import { view, store } from '@risingstack/react-easy-state';
-import { Space, Typography } from 'antd';
+import React from 'react';
+import { view } from '@risingstack/react-easy-state';
+import { Space, Typography, Checkbox } from 'antd';
 import {
 	CameraFilled,
 	TagFilled,
 	BorderInnerOutlined,
 	TagsOutlined,
 } from '@ant-design/icons';
+import { Store_HeaderTool } from './HeaderTool.store';
 const { Text } = Typography;
 
 const HeaderTool = ({ UID, positionX, positionY }) => {
 	const { width, cols } = { width: 1000, cols: 12 }; //TODO: privendra de data dans selectedData, voir la structure final des setting
+	const { _showDebugTools, _previewRenderDB } = Store_HeaderTool;
 	return (
 		<div className='HeaderCameraInfo'>
 			<Space size={4}>
@@ -33,6 +35,22 @@ const HeaderTool = ({ UID, positionX, positionY }) => {
 					<Text code>X.{~~positionX}</Text>
 					<Text code>Y.{~~positionY}</Text>
 				</div>
+				<Checkbox
+					defaultChecked={_showDebugTools}
+					onChange={(e) =>
+						(Store_HeaderTool._showDebugTools = e.target.checked)
+					}
+				>
+					DebugTools
+				</Checkbox>
+				<Checkbox
+					defaultChecked={_previewRenderDB}
+					onChange={(e) =>
+						(Store_HeaderTool._previewRenderDB = e.target.checked)
+					}
+				>
+					Preview render DB
+				</Checkbox>
 			</Space>
 		</div>
 	);

@@ -120,7 +120,7 @@
 }
 
 .ant-modal-mask {
-	background: #ffffff;
+	background: #000000;
 	pointer-events: none;
 	mix-blend-mode: hue;
 	-webkit-app-region: no-drag;

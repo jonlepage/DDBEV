@@ -41,9 +41,9 @@
 	overflow: hidden;
 }
 .ContentGrid:hover {
-	outline-color: #ffffff;
-	/* mix-blend-mode: difference; */
-	outline-width: 3px;
+	outline-color: #b64218;
+	outline-width: 2px;
+	outline-style: dashed;
 }
 .GridContentId {
 	position: absolute;
@@ -160,4 +160,19 @@
 }
 .ToolIcon:hover {
 	background: #ffffff2b;
+}
+
+.DataBaseList {
+	background: #272727;
+	max-width: 80px;
+	border-style: inset;
+	border-color: #8e8e8e;
+	height: 0px;
+	position: fixed;
+	max-height: 70%;
+	padding: 6px;
+	z-index: 999;
+	min-height: 70%;
+	overflow: auto;
+	min-width: 80px;
 }

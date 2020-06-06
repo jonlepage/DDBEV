@@ -1,45 +1,22 @@
-import React, { useState } from 'react';
-import { view, store } from '@risingstack/react-easy-state';
-import { App_store } from '../App.store';
-import { Store_NavPages } from './Navigation/NavPages.store';
-import { DATA_PageWelcome } from './ContentPage/PageWelcome.store';
-import { Store_ContentPage } from './ContentPage.store';
+import React from 'react';
+import { view } from '@risingstack/react-easy-state';
+import { VIEW_ContentPage, Store_ContentPage } from './ContentPage.store';
 import PageWelcome from './ContentPage/PageWelcome';
-import { DATA_PageClass } from './ContentPage/PageClass.store';
-import PageClass from './ContentPage/PageClass';
-import { DATA_PageData } from './ContentPage/PageData.store';
 import PageData from './ContentPage/PageData';
+import PageClass from './ContentPage/PageClass';
+import PageDataBase from './ContentPage/PageDataBase';
+import { Store_NavPages } from './Navigation/NavPages.store';
 
-/** TODO: FAIRE un storeEvents plus general pour gerer ca, car la , ont risque de update Content root, mais besoin juste pour camera */
-// export const EVENTS_ContentPage = store({
-// 	_spaceBar: false,
-// 	onKeyDown(e) {
-// 		if (e.keyCode === 32) {
-// 			//const { space } = Store_Global.EVENTSKEYS;
-// 			EVENTS_ContentPage._spaceBar = true;
-// 			e.preventDefault();
-// 		}
-// 	},
-// 	onKeyUp(e) {
-// 		//const { space } = Store_Global.EVENTSKEYS;
-// 		EVENTS_ContentPage._spaceBar = false;
-// 	},
-// 	// onMouseMove(e) {
-// 	// 	const { coor } = Store_Global.MOUSE;
-// 	// 	coor.x = e.clientX;
-// 	// 	coor.y = e.clientY;
-// 	// },
-// });
-
-/** todo: peut etre fair un gesiter de page, sa eviterai des import ici */
 function getView(TYPE, UID) {
 	switch (TYPE) {
-		case DATA_PageClass.NAME:
-			return <PageClass UID={UID} />;
-		case DATA_PageWelcome.NAME:
+		case VIEW_ContentPage.PageWelcome:
 			return <PageWelcome />;
-		case DATA_PageData.NAME:
+		case VIEW_ContentPage.PageData:
 			return <PageData />;
+		case VIEW_ContentPage.PageClass:
+			return <PageClass UID={UID} />;
+		case VIEW_ContentPage.PageDataBase:
+			return <PageDataBase UID={UID} />;
 		default:
 			return 'getView unknow Page';
 	}
@@ -47,12 +24,10 @@ function getView(TYPE, UID) {
 
 /** Affiche un type de page selon l'onglet choisi */
 const ContentPage = () => {
-	const { _selectedUID } = Store_NavPages;
+	const { _currentUID } = Store_ContentPage;
 	// si pas de _selectedUID, rooting vers Store_PageWelcome.NAME
-	if (_selectedUID) {
-		const { UID, TYPE } = Store_ContentPage.getData(_selectedUID);
-		console.log('UID, TYPE: ', UID, TYPE);
-
+	if (_currentUID) {
+		const { UID, TYPE } = Store_ContentPage.getData(_currentUID);
 		return (
 			<div
 				className='ContentRoot'

@@ -5,24 +5,18 @@ import { Modal, Form, Input, Select, Button } from 'antd';
 import { TagFilled } from '@ant-design/icons';
 import { Store_PageClass } from '../ContentPage/PageClass.store';
 import { Store_Modale_Class } from './Modale_Class.store';
-import { DATA_ContentPage } from '../ContentPage.store';
+import { DATA_PageDataBase } from '../ContentPage/PageDataBase.store';
+import { Store_Modale_DataBase } from './Modale_DataBase.store';
 
 const { Option, OptGroup } = Select;
 
-export const Store_ModaleData = store({
-	NAME: 'Store_ModaleData',
-	/** modele data */
-	DATA: {
-		_uid: '_r33',
-		_name: 'aeffa',
-		_pageType: '.cl',
-		_settingId: '',
-	},
-	RULES: {},
-});
 //TODO: ON PEUT CE PASSER DU PROPS DATA ICI,  importer plutot via module parent Modales.data
-const ModaleData = (/**@type {{data: DATA_ContentPage}} */ { data }) => {
-	const { NAME, TYPE, UID, _id, _descriptions, _usedTemplate } = data; // immutable, mutable
+const Modale_DataBase = (/**@type {{data: DATA_PageDataBase}} */ { data }) => {
+	//TODO: RENDU ICI: creer un dataBase, on doi pouvoir choisis la reference dataClass pour le rendu prototypal
+	// todo: les dataBase ce composer d'un max de page .. ?
+
+	const { NAME, TYPE, UID, _id, _descriptions } = data; // immutable, mutable
+	const datas = Store_Modale_DataBase.extractDataList();
 	return (
 		<Modal
 			visible={true}
@@ -41,15 +35,14 @@ const ModaleData = (/**@type {{data: DATA_ContentPage}} */ { data }) => {
 						<Input disabled={true} />
 					</Form.Item>
 					<Form.Item label='NAME' name='NAME' initialValue={NAME}>
-						<Input disabled={true} />
+						<Input disabled={true} defaultValue={NAME} />
 					</Form.Item>
 					<Form.Item label='TYPE' name='TYPE' initialValue={TYPE}>
-						<Input disabled={true} />
+						<Input disabled={true} defaultValue={TYPE} />
 					</Form.Item>
 					<Form.Item
 						label='_id'
 						name='_id'
-						initialValue={_id}
 						rules={[
 							{ required: true, message: '_id cant be empty!' },
 							({ getFieldValue }) => ({
@@ -63,38 +56,42 @@ const ModaleData = (/**@type {{data: DATA_ContentPage}} */ { data }) => {
 							}),
 						]}
 					>
-						<Input size='small' placeholder='_id' prefix={<TagFilled />} />
-					</Form.Item>
-					<Form.Item
-						label='_descriptions'
-						name='_descriptions'
-						initialValue={_descriptions}
-					>
 						<Input
+							defaultValue={_id}
+							size='small'
+							placeholder='_id'
+							prefix={<TagFilled />}
+						/>
+					</Form.Item>
+					<Form.Item label='_descriptions' name='_descriptions'>
+						<Input
+							defaultValue={_descriptions}
 							size='small'
 							placeholder='_descriptions'
 							prefix={<TagFilled />}
 						/>
 					</Form.Item>
-					{/* //TODO  map tous les id existant pour utiliser des template*/}
-					<Form.Item label='Templates' name='Templates' initialValue={'empty'}>
+					<Form.Item label='Classes' name='Classes'>
 						<Select
-							style={{ width: 200 }}
-							// onChange={handleChange}
+							mode='multiple'
+							style={{ width: '100%' }}
+							placeholder='Set prototypal Class hyharchic'
+							defaultValue={[]}
+							onChange={() => {}}
+							optionLabelProp='label'
 						>
-							<Option value='empty'>empty</Option>
-							<OptGroup label='Projets'>
-								<Option value='Charactere'>Charactere</Option>
-								<Option value='Item'>Item</Option>
-							</OptGroup>
-							<OptGroup label='Plugins'>
-								<Option value='tRPG_item'>RPG Items</Option>
-								<Option value='tRPG_chara'>RPG Charactere</Option>
-								<Option value='tRPG_monster'>RPG Monster</Option>
-								<Option value='tAction_item'>Action Items</Option>
-								<Option value='tAction_chara'>Action Charactere</Option>
-								<Option value='tAction_monster'>Action Monster</Option>
-							</OptGroup>
+							{datas.map((_data, i) => {
+								const { UID, _id } = _data;
+								return (
+									<Option key={_id} value={_id} label={_id}>
+										<div className='demo-option-label-item'>
+											<span role='img' aria-label={_id}>
+												{_id}
+											</span>
+										</div>
+									</Option>
+								);
+							})}
 						</Select>
 					</Form.Item>
 					<Form.Item>
@@ -108,4 +105,4 @@ const ModaleData = (/**@type {{data: DATA_ContentPage}} */ { data }) => {
 	);
 };
 
-export default view(ModaleData);
+export default view(Modale_DataBase);

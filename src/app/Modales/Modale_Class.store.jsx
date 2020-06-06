@@ -1,7 +1,6 @@
 import { store } from '@risingstack/react-easy-state';
 import { DATA_PageClass } from '../ContentPage/PageClass.store';
 import { Store_Modales } from '../Modales.store';
-import { Store_NavPages } from '../Navigation/NavPages.store';
 import { Store_ContentPage } from '../ContentPage.store';
 
 export const Store_Modale_Class = store({
@@ -16,10 +15,10 @@ export const Store_Modale_Class = store({
 	RULES: {},
 	/**@param {DATA_PageClass} data */
 	onFinish(customdata, data) {
-		Store_ContentPage.add(customdata);
-		// // //TODO: make a extra options
+		const mixData = Object.assign(data, customdata);
+		Store_ContentPage.add(mixData);
 		if ('open after create') {
-			Store_NavPages.Select(data.UID);
+			Store_ContentPage.select(data.UID);
 		}
 		Store_Modales.clear();
 	},

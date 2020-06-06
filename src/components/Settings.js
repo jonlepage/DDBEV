@@ -9,6 +9,8 @@ import { DATA_Setting_Color } from './Settings/Setting_Color.store';
 import Setting_Color from './Settings/Setting_Color';
 import { DATA_Setting_Switch } from './Settings/Setting_Switch.store';
 import Setting_Switch from './Settings/Setting_Switch';
+import { DATA_Setting_Select } from './Settings/Setting_Select.store';
+import Setting_Select from './Settings/Setting_Select';
 
 /**
  * @typedef {Object} LayoutSettings - Data Setting layouts
@@ -208,6 +210,8 @@ function getView(NAME, skey, data, _setting) {
 			return <Setting_Color skey={skey} data={data} _setting={_setting} />;
 		case DATA_Setting_Switch.NAME:
 			return <Setting_Switch skey={skey} data={data} _setting={_setting} />;
+		case DATA_Setting_Select.NAME:
+			return <Setting_Select skey={skey} data={data} _setting={_setting} />;
 		default:
 			return <div>unknow setting?{skey}</div>;
 	}

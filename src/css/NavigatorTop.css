@@ -6,13 +6,17 @@
 	padding: 0px 4px;
 }
 .NavigatorTop_Page {
-	background: #212121;
+	background: #272727;
 	color: #faebd733;
 	margin: 0px;
-	border-style: outset;
-	border-width: 2px;
-	border-color: #212121;
-	transition: color 0.1s, background 0.1s, border-color 0.1s, box-shadow 0.1s;
+	border-left: double;
+	border-width: 1px;
+	border-color: #adadad;
+	min-width: 100px;
+	min-height: 34px;
+	padding: 0px 0px 0px 4px;
+	cursor: pointer;
+	transition: all 1000ms cubic-bezier(0, 1.13, 0.21, 1.02);
 }
 .NavigatorTop_Page .ant-radio-button-wrapper.ant-radio-button-wrapper-checked {
 	color: #ff7d3a !important;
@@ -26,3 +30,46 @@
 	background: #ffffff00 !important;
 	color: #ff8b51 !important;
 }
+
+.NavPages {
+	display: flex;
+	flex-grow: 1;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	z-index: 1;
+	margin: 0px 0px -10px 0px;
+}
+.NavPages::-webkit-scrollbar-track {
+	background: #29292900;
+}
+.NavPages:hover::-webkit-scrollbar-track {
+	background: #292929;
+}
+.NavButton {
+	display: flex;
+}
+button.ant-btn.NavButton {
+	height: 100%;
+}
+.NavigatorTop_CloseX:hover {
+	background: #a00b0b;
+	color: aliceblue;
+	border-color: #c64242;
+	opacity: 1;
+}
+.NavigatorTop_CloseX {
+	float: right;
+	padding: 1px 3px;
+	margin: 0px 0px 0px 6px;
+	border-style: outset;
+	border-color: #5353531c;
+	border-radius: 1px;
+	border-width: 2px;
+	font-size: smaller;
+	opacity: 0.3;
+}
+
+/* .NavigatorTop_Page.Selected {
+	background: #ffffff00;
+	border-bottom: 4px solid #c2542a;
+} */
